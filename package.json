@@ -1,0 +1,19 @@
+{
+  "name": "draw-flow",
+  "version": "1.0.0",
+  "description": "Helps in drawing flows for interactive UI application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pskanawat/draw-flow.git"
+  },
+  "author": "pskanawat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pskanawat/draw-flow/issues"
+  },
+  "homepage": "https://github.com/pskanawat/draw-flow#readme"
+}
