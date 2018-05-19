@@ -4,10 +4,10 @@ import _ from "lodash";
 import { select, selectAll } from 'd3-selection'
 import { drag } from 'd3-drag'
 import {event as currentEvent, mouse} from 'd3';
-import Node from './node'
-import NodeMulti from './node-multi'
-import Edge from './edge'
-import Navigator from './navigator'
+import Node from './components/node'
+import NodeMulti from './components/node-multi'
+import Edge from './components/edge'
+import Navigator from './components/navigator'
 
 export default class FlowBuilder extends React.Component {
 	constructor(props) {

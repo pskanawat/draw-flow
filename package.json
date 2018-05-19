@@ -1,19 +1,44 @@
 {
-  "name": "draw-flow",
-  "version": "1.0.0",
-  "description": "Helps in drawing flows for interactive UI application.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_from": "git+https://github.com/pskanawat/draw-flow.git",
+  "_id": "draw-flow@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-0Z4cLC3mfm5ZVCLlzofXFNZe8Rc=",
+  "_location": "/draw-flow",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/pskanawat/draw-flow.git",
+    "rawSpec": "https://github.com/pskanawat/draw-flow.git",
+    "saveSpec": "git+https://github.com/pskanawat/draw-flow.git",
+    "fetchSpec": "https://github.com/pskanawat/draw-flow.git",
+    "gitCommittish": "master"
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/pskanawat/draw-flow.git#7f5866b72c69a0918e565710f5965c508aa7b841",
+  "_spec": "https://github.com/pskanawat/draw-flow.git",
+  "_where": "/Users/puran.kanawat/dev/journey-platform-ui",
+  "author": {
+    "name": "pskanawat"
+  },
+  "bugs": {
+    "url": "https://github.com/pskanawat/draw-flow/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Helps in drawing flows for interactive UI application.",
+  "homepage": "https://github.com/pskanawat/draw-flow#readme",
+  "license": "ISC",
+  "main": "./src/flow-builder.js",
+  "name": "draw-flow",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pskanawat/draw-flow.git"
   },
-  "author": "pskanawat",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pskanawat/draw-flow/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/pskanawat/draw-flow#readme"
+  "version": "1.0.0"
 }
