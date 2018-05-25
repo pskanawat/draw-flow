@@ -1,38 +1,66 @@
 import React from "react"
+import _ from "lodash";
 import PropTypes from 'prop-types'
 import trashImg from '../images/trash.svg'
 
-const Node = ({ x, y, id, width, height, onClick, onDelete}) => (
-	<g className="node-group" data-id={id} data-x={x} data-y={y} transform={`translate(${x}, ${y})`}>			
+const DEFAULTS = {
+		title: "Untitled",
+		icon: "",
+		id: "id",
+		width: 170,
+		height:100,
+		bgColor: "#fff",
+		strokeColor: "#9bc8ff"
+	};
+
+const Node = ({ 
+	x, y, id, 
+	width = DEFAULTS.width, 
+	height = DEFAULTS.width, 
+	title = DEFAULTS.title, 
+	icon = DEFAULTS.title, 
+	bgColor = DEFAULTS.bgColor, 
+	strokeColor = DEFAULTS.strokeColor, 
+	onClick, onDelete}) => {
+
+	return (<g className="node-group" data-id={id} data-x={x} data-y={y} transform={`translate(${x}, ${y})`}>			
 		<rect
-			className="body"
 			onClick={onClick}
 			width={width}
 			height={height}
-			stroke="#9bc8ff"
-			filter="url(#dropShadowv-21195304394)">
+			fill="#fff"
+			stroke={strokeColor}
+			filter="url(#dropShadowv-21195304394)"
+			rx="15" ry="15">
 		</rect>
-		<rect 
-			className="node-head"
+		<rect
 			width={width}
-			height={28}
-			stroke="#9bc8ff">
+			height={37}
+			fill={bgColor}
+			stroke={strokeColor}
+			rx="15" ry="15">
 		</rect>
-		<text className="node-title" x="0.8em" y="1.4em">
-			<tspan> Node title </tspan>
+		<image href={icon} transform="translate(8,4)"/>
+		<text transform="translate(45,23)">
+			<tspan> {title} </tspan>
 		</text>
 		<text className="node-id" x="0.8em" y={height-4}>
 			<tspan>{id}</tspan>
 		</text>
-		<g className="port-group">
-			<path className="port-body" strokeWidth="2" d="M100 0 Q 150 60 100 100"></path>
+		<g className="port-group" transform={`translate(${width}, 0)`}>
+			<g>
+				<circle cy={ 10 } r="10"></circle>
+			</g>
+			<circle cy={ 32 } r="10"></circle>
+			<circle cy={ 54 } r="10"></circle>
+			<circle cy={ 76 } r="10"></circle>
 		</g>
 		<g className="del-group" onClick={onDelete}>
 			<circle cx={width-20} r="10"></circle>
 			<image href={trashImg} width="10" height="13" transform={`translate(${width-25},-6.5)`} />
 		</g>
-	</g>
-)
+	</g>)
+}
 
 Node.propTypes = {
 	x: PropTypes.number.isRequired,

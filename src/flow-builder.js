@@ -19,7 +19,7 @@ export default class FlowBuilder extends React.Component {
 		this.uiState = {
 			mouseOverNode: null,
 			dimestion: {
-				width: 100,
+				width: 170,
 				height:100
 			}
 		}
@@ -39,7 +39,8 @@ export default class FlowBuilder extends React.Component {
 		 * Finding Edges for moved node from state.
 		 */
 		//let edges = _.get(self.state, `nodeMap[${draggedElem.dataset.id}]["edges"]`, []);
-		let drggedElemNewPos = {
+		let drggedElemNewProps = {
+			...self.state.nodes[draggedElem.dataset.id],
 			x: (+draggedElem.dataset.x) + currentEvent.dx,
 			y: (+draggedElem.dataset.y) + currentEvent.dy
 		}
@@ -49,7 +50,9 @@ export default class FlowBuilder extends React.Component {
 			.attr("data-y",drggedElemNewPos.y);*/
 
 		let newNode = {};
-		newNode[draggedElem.dataset.id] = drggedElemNewPos;
+		newNode[draggedElem.dataset.id] = {
+			...drggedElemNewProps
+		};
 
 		self.setState({
 			nodes: {
@@ -171,11 +174,18 @@ export default class FlowBuilder extends React.Component {
 
 	onDrop(ev) {
 		ev.preventDefault();
-		var data = ev.dataTransfer.getData("text");
+		let nodeAttrs;
+		try {
+			nodeAttrs = JSON.parse(ev.dataTransfer.getData("node-attrs"));
+		}
+		catch(err) {
+			console.warn("Exception: ", err)
+		} 
 		console.log(ev.clientX, ev.clientY);
-		this.addNode(data, {
-			x: ev.clientX - 257,
-			y: ev.clientY - 51
+		this.addNode({
+			x: ev.clientX - 332,
+			y: ev.clientY - 71,
+			...nodeAttrs	
 		});
 	}
 
@@ -188,13 +198,9 @@ export default class FlowBuilder extends React.Component {
 		this.props.onNodeClick && this.props.onNodeClick({id, ...this.state.nodeMap[id]})
 	}
 
-	addNode(data, pos) {
+	addNode(attrs) {
 		let nodeObj = {};
-		nodeObj[`fb-elem-id-${this.nextUniqueId++}`] = {
-			...pos,
-			width: this.uiState.dimestion.width,
-			height: this.uiState.dimestion.height
-		}
+		nodeObj[`fb-elem-id-${this.nextUniqueId++}`] = attrs;
 
 		let newState = Object.assign ({}, this.state, {
 			nodes: {
@@ -303,10 +309,9 @@ export default class FlowBuilder extends React.Component {
 								onDelete={(ev)=>this.deleteEdge(ev)} />)}
 							{_.map(this.state.nodes, 
 								(node, id) => <Node key={id} id={id} 
-								x={node.x} 
-								y={node.y} 
+								{...node}
 								width={this.uiState.dimestion.width} 
-								height={this.uiState.dimestion.height} 
+								height={this.uiState.dimestion.height}
 								onClick={(ev) => this.onNodeClick(ev)} 
 								onDelete={(ev)=>this.deleteNode(ev)} ports={5} />)}
 						</g>
