@@ -1,13 +1,23 @@
 import React from "react";
 import _ from "lodash";
 
-import { select, selectAll } from 'd3-selection'
+import styled from 'styled-components';
+
+import { select, selectAll } from 'd3-selection';
 import { drag } from 'd3-drag'
 import {event as currentEvent, mouse} from 'd3';
-import Node from './components/node'
-import NodeMulti from './components/node-multi'
-import Edge from './components/edge'
-import Navigator from './components/navigator'
+import Node from './components/node';
+import NodeMulti from './components/node-multi';
+import Edge from './components/edge';
+import Navigator from './components/navigator';
+import bgImg from "./images/bg.png";
+
+const Container = styled.section`
+	& > svg {
+		background: url(${bgImg}) -15px -15px;
+		background-size: 25%
+	}
+`;
 
 export default class FlowBuilder extends React.Component {
 	constructor(props) {
@@ -288,7 +298,7 @@ export default class FlowBuilder extends React.Component {
 
 	render() {
 		return (
-			<section className="designer-container">
+			<Container>
 				<svg width="1200" height="1200" onDrop={this.onDrop} onDragOver={this.onDragOver}>				
 					<g>
 						<defs>
@@ -318,7 +328,7 @@ export default class FlowBuilder extends React.Component {
 					</g>	
 				</svg>
 				<Navigator nodes={this.state.nodes} width={this.uiState.dimestion.width} height={this.uiState.dimestion.height} />
-			</section>
+			</Container>
 		);
 	}
 }

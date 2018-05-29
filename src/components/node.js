@@ -40,7 +40,7 @@ const Node = ({
 			stroke={strokeColor}
 			rx="15" ry="15">
 		</rect>
-		<image href={icon} transform="translate(8,4)"/>
+		<image href={icon} width="30" transform="translate(8,8)"/>
 		<text transform="translate(45,23)">
 			<tspan> {title} </tspan>
 		</text>
